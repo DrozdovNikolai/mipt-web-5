@@ -1,0 +1,289 @@
+{
+  "info": {
+    "_postman_id": "3c0e4423-4d96-4e22-8fb1-3fd4f584bca1",
+    "name": "LampFactory Store - Products Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Коллекция API для микросервиса управления товарами интернет-магазина лампочек."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8001",
+      "type": "string"
+    },
+    {
+      "key": "productId",
+      "value": "4f39fa77-4d60-4385-b7ce-3352678af18a",
+      "type": "string"
+    },
+    {
+      "key": "productSlug",
+      "value": "led-a60-7w-e27-3000k",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "replace-with-jwt-token",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Public Catalog",
+      "item": [
+        {
+          "name": "Get Products List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products?category=led-standard&socket=E27&inStock=true&sort=price_asc&page=1&pageSize=12",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "led-standard"
+                },
+                {
+                  "key": "socket",
+                  "value": "E27"
+                },
+                {
+                  "key": "inStock",
+                  "value": "true"
+                },
+                {
+                  "key": "sort",
+                  "value": "price_asc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "12"
+                }
+              ]
+            },
+            "description": "Получить список товаров каталога с фильтрами, сортировкой и пагинацией."
+          }
+        },
+        {
+          "name": "Get Product By Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products/slug/{{productSlug}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "slug",
+                "{{productSlug}}"
+              ]
+            },
+            "description": "Получить подробную карточку товара по slug."
+          }
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "categories"
+              ]
+            },
+            "description": "Получить список категорий каталога."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Catalog",
+      "item": [
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoryId\": \"cf1dd6cb-61e5-4cf4-8187-12735f614c0c\",\n  \"sku\": \"LF-A60-15W-4000K-E27-{{$timestamp}}\",\n  \"name\": \"LED A60 15W E27 4000K\",\n  \"slug\": \"led-a60-15w-e27-4000k-{{$timestamp}}\",\n  \"shortDescription\": \"Яркая LED-лампа для офиса и дома.\",\n  \"description\": \"Лампа общего назначения с нейтральным белым светом.\",\n  \"basePrice\": 1790,\n  \"discountPrice\": 1590,\n  \"stockQty\": 25,\n  \"powerWatts\": 15,\n  \"socketType\": \"E27\",\n  \"colorTemperature\": \"4000K\",\n  \"luminousFlux\": 1450,\n  \"voltage\": \"220-240V\",\n  \"lifetimeHours\": 30000,\n  \"isDimmable\": false,\n  \"isActive\": true,\n  \"images\": [\n    {\n      \"imageUrl\": \"https://example.com/images/led-a60-15w-front.jpg\",\n      \"altText\": \"LED A60 15W E27 4000K\",\n      \"sortOrder\": 0,\n      \"isMain\": true\n    }\n  ],\n  \"attributes\": [\n    {\n      \"attributeName\": \"Угол свечения\",\n      \"attributeValue\": \"220°\",\n      \"sortOrder\": 0\n    },\n    {\n      \"attributeName\": \"Гарантия\",\n      \"attributeValue\": \"24 месяца\",\n      \"sortOrder\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ]
+            },
+            "description": "Создать новый товар из админ-панели."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Product is created\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "const product = pm.response.json();",
+                  "pm.collectionVariables.set(\"productId\", product.id);",
+                  "pm.collectionVariables.set(\"productSlug\", product.slug);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"LED A60 7W E27 3000K Updated\",\n  \"basePrice\": 1390,\n  \"discountPrice\": 1290,\n  \"stockQty\": 48,\n  \"isActive\": true,\n  \"description\": \"Обновленное описание товара для витрины и карточки товара.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}"
+              ]
+            },
+            "description": "Обновить основные поля карточки товара."
+          }
+        },
+        {
+          "name": "Update Product Stock",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stockQty\": 42\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products/{{productId}}/stock",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}",
+                "stock"
+              ]
+            },
+            "description": "Точечно изменить остаток товара."
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/products/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}"
+              ]
+            },
+            "description": "Мягко удалить товар из каталога."
+          }
+        }
+      ]
+    }
+  ]
+}

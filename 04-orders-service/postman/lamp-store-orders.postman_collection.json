@@ -1,0 +1,313 @@
+{
+  "info": {
+    "_postman_id": "4b7d1483-0e09-456f-8162-8da2c46be7da",
+    "name": "LampFactory Store - Orders Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Коллекция API для микросервиса управления заказами."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8002",
+      "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "31446b24-020f-4a91-a7f0-889fef23e4d8",
+      "type": "string"
+    },
+    {
+      "key": "orderNumber",
+      "value": "LF-2026-000123",
+      "type": "string"
+    },
+    {
+      "key": "publicToken",
+      "value": "replace-with-public-order-token",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "replace-with-jwt-token",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Public Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"Иван Петров\",\n  \"customerPhone\": \"+7 999 123-45-67\",\n  \"customerEmail\": \"ivan.petrov@example.com\",\n  \"deliveryCity\": \"Москва\",\n  \"deliveryAddress\": \"ул. Академика Королева, д. 12, кв. 45\",\n  \"deliveryMethod\": \"courier\",\n  \"paymentMethod\": \"card_online\",\n  \"customerComment\": \"Позвоните за час до доставки.\",\n  \"items\": [\n    {\n      \"productId\": \"4f39fa77-4d60-4385-b7ce-3352678af18a\",\n      \"quantity\": 2\n    },\n    {\n      \"productId\": \"f29516b0-7c58-4564-a30e-d7dd8ab1ef1a\",\n      \"quantity\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ]
+            },
+            "description": "Создать новый заказ из checkout-формы."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Order is created\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "const order = pm.response.json();",
+                  "pm.collectionVariables.set(\"orderId\", order.id);",
+                  "pm.collectionVariables.set(\"orderNumber\", order.orderNumber);",
+                  "pm.collectionVariables.set(\"publicToken\", order.publicToken);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Public Order By Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/public/{{orderNumber}}?token={{publicToken}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "public",
+                "{{orderNumber}}"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{publicToken}}"
+                }
+              ]
+            },
+            "description": "Получить данные заказа для страницы подтверждения без авторизации пользователя."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Orders",
+      "item": [
+        {
+          "name": "Get Orders List",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders?status=new&page=1&pageSize=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "new"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Получить список заказов для таблицы админки."
+          }
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/{{orderId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}"
+              ]
+            },
+            "description": "Получить подробную карточку заказа для менеджера."
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\",\n  \"comment\": \"Заказ подтвержден по телефону.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/{{orderId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}",
+                "status"
+              ]
+            },
+            "description": "Изменить статус заказа с записью в историю."
+          }
+        },
+        {
+          "name": "Update Payment Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentStatus\": \"paid\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/{{orderId}}/payment-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}",
+                "payment-status"
+              ]
+            },
+            "description": "Обновить статус оплаты заказа."
+          }
+        },
+        {
+          "name": "Update Manager Comment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"managerComment\": \"Клиент попросил доставить после 19:00.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/orders/{{orderId}}/manager-comment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{orderId}}",
+                "manager-comment"
+              ]
+            },
+            "description": "Обновить внутренний комментарий менеджера."
+          }
+        }
+      ]
+    }
+  ]
+}

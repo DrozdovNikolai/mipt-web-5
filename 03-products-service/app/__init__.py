@@ -1,0 +1,2 @@
+"""Products microservice package."""
+

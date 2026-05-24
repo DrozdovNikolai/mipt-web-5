@@ -1,0 +1,80 @@
+services:
+  products-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: lamp
+      POSTGRES_PASSWORD: lamp
+    ports:
+      - "5433:5432"
+    volumes:
+      - products-db-data:/var/lib/postgresql/data
+
+  orders-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: lamp
+      POSTGRES_PASSWORD: lamp
+    ports:
+      - "5434:5432"
+    volumes:
+      - orders-db-data:/var/lib/postgresql/data
+
+  admin-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: admin
+      POSTGRES_USER: lamp
+      POSTGRES_PASSWORD: lamp
+    ports:
+      - "5435:5432"
+    volumes:
+      - admin-db-data:/var/lib/postgresql/data
+
+  products-service:
+    build:
+      context: .
+      dockerfile: 03-products-service/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://lamp:lamp@products-db:5432/products
+      JWT_SECRET: lamp-store-dev-secret
+    ports:
+      - "8001:8000"
+    depends_on:
+      - products-db
+
+  orders-service:
+    build:
+      context: .
+      dockerfile: 04-orders-service/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://lamp:lamp@orders-db:5432/orders
+      PRODUCTS_SERVICE_URL: http://products-service:8000
+      JWT_SECRET: lamp-store-dev-secret
+    ports:
+      - "8002:8000"
+    depends_on:
+      - orders-db
+      - products-service
+
+  admin-panel-service:
+    build:
+      context: .
+      dockerfile: 05-admin-service/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://lamp:lamp@admin-db:5432/admin
+      PRODUCTS_SERVICE_URL: http://products-service:8000
+      ORDERS_SERVICE_URL: http://orders-service:8000
+      JWT_SECRET: lamp-store-dev-secret
+    ports:
+      - "3003:8000"
+    depends_on:
+      - admin-db
+      - products-service
+      - orders-service
+
+volumes:
+  products-db-data:
+  orders-db-data:
+  admin-db-data:
