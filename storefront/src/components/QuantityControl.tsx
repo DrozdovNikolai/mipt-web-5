@@ -1,4 +1,7 @@
-import { cx } from "../styles";
+import styles from "./QuantityControl.module.css";
+import { createCx } from "../styles";
+
+const cx = createCx(styles);
 
 type QuantityControlProps = {
   value: number;

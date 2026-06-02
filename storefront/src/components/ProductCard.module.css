@@ -1,0 +1,29 @@
+.product-card {
+  display: grid;
+  overflow: hidden;
+  background: var(--paper-strong);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+
+.product-image {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, #ffe9bf 0%, #ffd38d 34%, #e19a33 35%, #8a5807 36%, #f8f4ec 37%);
+}
+
+.product-image span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.product-body {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}

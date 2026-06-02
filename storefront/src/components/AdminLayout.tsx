@@ -3,7 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { logoutAdminApi } from "../api";
 import { clearAdminSession, loadAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminLayout.module.css";
+import { createCx } from "../styles";
+
+const cx = createCx(styles);
 
 type AdminLayoutProps = {
   children: ReactNode;

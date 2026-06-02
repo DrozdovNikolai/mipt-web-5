@@ -8,8 +8,11 @@ import {
   updateAdminProductApi,
 } from "../api";
 import { loadAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminProductFormPage.module.css";
+import { createCx } from "../styles";
 import type { AdminProduct, Category, ProductAttribute } from "../types";
+
+const cx = createCx(styles);
 
 type ProductFormState = {
   categoryId: string;

@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import type { ReactNode } from "react";
 
-import { cx } from "../styles";
+import styles from "./Layout.module.css";
+import { createCx } from "../styles";
+
+const cx = createCx(styles);
 
 type LayoutProps = {
   children: ReactNode;

@@ -1,7 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 
 import { formatMoney, loadLastOrder } from "../cart";
-import { cx } from "../styles";
+import styles from "./SuccessPage.module.css";
+import { createCx } from "../styles";
+
+const cx = createCx(styles);
 
 export function SuccessPage() {
   const { orderNumber } = useParams();

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 import { fetchAdminOrdersApi, updateAdminOrderStatusApi } from "../api";
 import { loadAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminOrdersPage.module.css";
+import { createCx } from "../styles";
 import type { Order, OrderSummary } from "../types";
+
+const cx = createCx(styles);
 
 const statusLabels: Record<Order["orderStatus"], string> = {
   new: "Новый",

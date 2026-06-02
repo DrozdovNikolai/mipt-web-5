@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 import { deleteAdminProductApi, fetchAdminCategoriesApi, fetchAdminProductsApi } from "../api";
 import { loadAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminProductsPage.module.css";
+import { createCx } from "../styles";
 import type { AdminProduct, Category } from "../types";
+
+const cx = createCx(styles);
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat("ru-RU", { style: "currency", currency: "RUB", maximumFractionDigits: 0 }).format(value);

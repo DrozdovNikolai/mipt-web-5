@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { ProductCard } from "../components/ProductCard";
-import { cx } from "../styles";
+import styles from "./CatalogPage.module.css";
+import { createCx } from "../styles";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addToCart } from "../store/cartSlice";
 import { loadProducts } from "../store/productsSlice";
 import type { Product } from "../types";
+
+const cx = createCx(styles);
 
 type SortValue = "price_asc" | "price_desc" | "name_asc" | "name_desc";
 

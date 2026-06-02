@@ -1,0 +1,22 @@
+.qty-control {
+  display: inline-grid;
+  grid-template-columns: 40px 42px 40px;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: white;
+}
+
+.qty-control button {
+  height: 100%;
+  border: 0;
+  background: white;
+  font-weight: 700;
+}
+
+.qty-control span {
+  text-align: center;
+  font-weight: 700;
+}

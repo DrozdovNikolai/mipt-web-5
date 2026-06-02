@@ -2,12 +2,15 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { DELIVERY_PRICE, formatMoney } from "../cart";
-import { cx } from "../styles";
+import styles from "./CheckoutPage.module.css";
+import { createCx } from "../styles";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { clearCart } from "../store/cartSlice";
 import { createOrder } from "../store/ordersSlice";
 import { loadProducts } from "../store/productsSlice";
 import type { CheckoutForm } from "../types";
+
+const cx = createCx(styles);
 
 const initialForm: CheckoutForm = {
   customerName: "Иван Петров",

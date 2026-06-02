@@ -1,0 +1,39 @@
+.login-frame {
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.login-wrap {
+  width: min(100%, 460px);
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+  background: var(--paper-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.center {
+  text-align: center;
+}
+
+.center-brand {
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.center-actions {
+  justify-content: center;
+}
+
+.single-column {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 720px) {
+  .login-frame,
+  .login-wrap {
+    padding: 16px;
+  }
+}

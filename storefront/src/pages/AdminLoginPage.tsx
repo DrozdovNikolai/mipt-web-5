@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { loginAdminApi } from "../api";
 import { saveAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminLoginPage.module.css";
+import { createCx } from "../styles";
+
+const cx = createCx(styles);
 
 export function AdminLoginPage() {
   const navigate = useNavigate();

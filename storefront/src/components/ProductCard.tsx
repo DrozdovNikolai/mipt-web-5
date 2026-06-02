@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
 import { formatMoney } from "../cart";
-import { cx } from "../styles";
+import styles from "./ProductCard.module.css";
+import { createCx } from "../styles";
 import type { Product } from "../types";
+
+const cx = createCx(styles);
 
 type ProductCardProps = {
   product: Product;

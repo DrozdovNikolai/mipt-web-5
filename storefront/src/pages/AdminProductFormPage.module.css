@@ -1,0 +1,8 @@
+.admin-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-flags {
+  flex-wrap: wrap;
+}

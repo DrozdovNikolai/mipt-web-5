@@ -1,0 +1,162 @@
+[
+  {
+    "sku": "LF-A60-7W-3000K-E27",
+    "slug": "led-a60-7w-e27-3000k",
+    "name": "LED A60 7W E27 3000K",
+    "category": "LED стандарт",
+    "price": 1290,
+    "stock_qty": 40
+  },
+  {
+    "sku": "LF-A60-7W-4000K-E27",
+    "slug": "led-a60-7w-e27-4000k",
+    "name": "LED A60 7W E27 4000K",
+    "category": "LED стандарт",
+    "price": 1290,
+    "stock_qty": 36
+  },
+  {
+    "sku": "LF-A60-10W-6500K-E27",
+    "slug": "led-a60-10w-e27-6500k",
+    "name": "LED A60 10W E27 6500K",
+    "category": "LED стандарт",
+    "price": 1490,
+    "stock_qty": 24
+  },
+  {
+    "sku": "LF-A60-12W-2700K-DIM",
+    "slug": "led-a60-12w-e27-2700k-dim",
+    "name": "LED A60 12W E27 2700K Dimmable",
+    "category": "LED стандарт",
+    "price": 1690,
+    "stock_qty": 18
+  },
+  {
+    "sku": "LF-C37-5W-2700K-E14",
+    "slug": "led-c37-5w-e14-2700k",
+    "name": "LED C37 5W E14 2700K",
+    "category": "Свечи и шарики",
+    "price": 990,
+    "stock_qty": 52
+  },
+  {
+    "sku": "LF-C37-5W-4000K-E14",
+    "slug": "led-c37-5w-e14-4000k",
+    "name": "LED C37 5W E14 4000K",
+    "category": "Свечи и шарики",
+    "price": 990,
+    "stock_qty": 46
+  },
+  {
+    "sku": "LF-G45-6W-3000K-E27",
+    "slug": "led-g45-6w-e27-3000k",
+    "name": "LED G45 6W E27 3000K",
+    "category": "Свечи и шарики",
+    "price": 1090,
+    "stock_qty": 33
+  },
+  {
+    "sku": "LF-G45-6W-4000K-E14",
+    "slug": "led-g45-6w-e14-4000k",
+    "name": "LED G45 6W E14 4000K",
+    "category": "Свечи и шарики",
+    "price": 1090,
+    "stock_qty": 29
+  },
+  {
+    "sku": "LF-FIL-A60-8W-2200K",
+    "slug": "filament-a60-8w-e27-2200k",
+    "name": "Filament A60 8W E27 2200K",
+    "category": "Декоративные filament",
+    "price": 1890,
+    "stock_qty": 21
+  },
+  {
+    "sku": "LF-FIL-ST64-8W-2200K",
+    "slug": "filament-st64-8w-e27-2200k",
+    "name": "Filament ST64 8W E27 2200K",
+    "category": "Декоративные filament",
+    "price": 2190,
+    "stock_qty": 17
+  },
+  {
+    "sku": "LF-FIL-G95-6W-2200K",
+    "slug": "filament-g95-6w-e27-2200k",
+    "name": "Filament G95 6W E27 2200K",
+    "category": "Декоративные filament",
+    "price": 2490,
+    "stock_qty": 14
+  },
+  {
+    "sku": "LF-FIL-C35-4W-2400K",
+    "slug": "filament-c35-4w-e14-2400k",
+    "name": "Filament C35 4W E14 2400K",
+    "category": "Декоративные filament",
+    "price": 1390,
+    "stock_qty": 31
+  },
+  {
+    "sku": "LF-GU10-7W-4000K",
+    "slug": "spot-gu10-7w-4000k",
+    "name": "Spot GU10 7W 4000K",
+    "category": "Споты и трубчатые",
+    "price": 1190,
+    "stock_qty": 44
+  },
+  {
+    "sku": "LF-GU10-7W-6500K",
+    "slug": "spot-gu10-7w-6500k",
+    "name": "Spot GU10 7W 6500K",
+    "category": "Споты и трубчатые",
+    "price": 1190,
+    "stock_qty": 27
+  },
+  {
+    "sku": "LF-T8-18W-4000K-G13",
+    "slug": "t8-18w-g13-4000k",
+    "name": "Tube T8 18W G13 4000K",
+    "category": "Споты и трубчатые",
+    "price": 1590,
+    "stock_qty": 22
+  },
+  {
+    "sku": "LF-T8-18W-6500K-G13",
+    "slug": "t8-18w-g13-6500k",
+    "name": "Tube T8 18W G13 6500K",
+    "category": "Споты и трубчатые",
+    "price": 1590,
+    "stock_qty": 19
+  },
+  {
+    "sku": "LF-E40-50W-5000K",
+    "slug": "industrial-highbay-50w-e40-5000k",
+    "name": "Industrial Highbay 50W E40 5000K",
+    "category": "Промышленные",
+    "price": 3990,
+    "stock_qty": 11
+  },
+  {
+    "sku": "LF-E40-80W-5000K",
+    "slug": "industrial-highbay-80w-e40-5000k",
+    "name": "Industrial Highbay 80W E40 5000K",
+    "category": "Промышленные",
+    "price": 5290,
+    "stock_qty": 8
+  },
+  {
+    "sku": "LF-SMART-A60-9W-RGBCW",
+    "slug": "smart-a60-9w-e27-rgbcw",
+    "name": "Smart A60 9W E27 RGBCW",
+    "category": "Smart лампы",
+    "price": 2790,
+    "stock_qty": 16
+  },
+  {
+    "sku": "LF-SMART-GU10-5W-RGBCW",
+    "slug": "smart-gu10-5w-rgbcw",
+    "name": "Smart GU10 5W RGBCW",
+    "category": "Smart лампы",
+    "price": 2590,
+    "stock_qty": 13
+  }
+]

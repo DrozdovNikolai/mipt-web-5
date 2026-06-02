@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 import { fetchAdminDashboardApi } from "../api";
 import { loadAdminSession } from "../adminSession";
-import { cx } from "../styles";
+import styles from "./AdminDashboardPage.module.css";
+import { createCx } from "../styles";
 import type { AdminDashboardSummary } from "../types";
+
+const cx = createCx(styles);
 
 export function AdminDashboardPage() {
   const [summary, setSummary] = useState<AdminDashboardSummary | null>(null);

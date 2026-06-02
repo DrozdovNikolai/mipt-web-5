@@ -3,10 +3,13 @@ import { useEffect } from "react";
 
 import { DELIVERY_PRICE, formatMoney } from "../cart";
 import { QuantityControl } from "../components/QuantityControl";
-import { cx } from "../styles";
+import styles from "./CartPage.module.css";
+import { createCx } from "../styles";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { removeFromCart, updateQuantity } from "../store/cartSlice";
 import { loadProducts } from "../store/productsSlice";
+
+const cx = createCx(styles);
 
 export function CartPage() {
   const dispatch = useAppDispatch();

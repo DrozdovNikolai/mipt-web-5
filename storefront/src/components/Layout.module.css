@@ -1,0 +1,32 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.content {
+  padding: 28px;
+}
+
+@media (max-width: 720px) {
+  .topbar,
+  .content {
+    padding: 16px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .content,
+  .topbar {
+    padding: 14px;
+  }
+}

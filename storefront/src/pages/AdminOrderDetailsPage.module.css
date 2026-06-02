@@ -1,0 +1,20 @@
+.order-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 20px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 18px;
+}
+
+.history-panel {
+  margin-top: 20px;
+}
+
+@media (max-width: 1100px) {
+  .order-layout {
+    grid-template-columns: 1fr;
+  }
+}

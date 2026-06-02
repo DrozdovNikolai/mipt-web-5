@@ -3,10 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 
 import { QuantityControl } from "../components/QuantityControl";
 import { formatMoney } from "../cart";
-import { cx } from "../styles";
+import styles from "./ProductPage.module.css";
+import { createCx } from "../styles";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addToCart } from "../store/cartSlice";
 import { loadProductBySlug } from "../store/productsSlice";
+
+const cx = createCx(styles);
 
 export function ProductPage() {
   const { slug } = useParams();
